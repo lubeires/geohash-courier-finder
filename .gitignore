@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Dados gerados
+data/cache/
+cache/
+*.graphml
+
+# Ambiente
+.env
+.DS_Store
+.vscode/
+
