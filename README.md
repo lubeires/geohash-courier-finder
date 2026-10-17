@@ -83,7 +83,7 @@ app/           interface (Dash + dash-leaflet)
 scripts/       pré-processamento da base, benchmark e gráficos
 tests/         testes automatizados (pytest)
 data/          base de restaurantes (e o cache do grafo, fora do git)
-docs/          relatório, decisões de projeto e resultados
+docs/          relatório, figuras e resultados do benchmark
 ```
 
 ## Dados
