@@ -1,0 +1,4 @@
+Python 3.12.3
+Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39
+x86_64
+repetições: 30, semente: 2026, σ = 400 m

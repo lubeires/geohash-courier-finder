@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" font-family="Helvetica, Arial, sans-serif" font-size="12">
+<rect width="720" height="420" fill="#ffffff"/>
+<text x="70" y="28" font-size="15" font-weight="bold" fill="#1f2933">Fração da frota examinada pela Trie</text>
+<text x="310.0" y="404" text-anchor="middle" fill="#52606d">raio de atendimento (km)</text>
+<text transform="translate(18 205.0) rotate(-90)" text-anchor="middle" fill="#52606d">candidatos / N (%)</text>
+<line x1="70" x2="550" y1="360.0" y2="360.0" stroke="#e5e9ef"/>
+<text x="62" y="364.0" text-anchor="end" fill="#52606d">0</text>
+<line x1="70" x2="550" y1="298.0" y2="298.0" stroke="#e5e9ef"/>
+<text x="62" y="302.0" text-anchor="end" fill="#52606d">22,0</text>
+<line x1="70" x2="550" y1="236.0" y2="236.0" stroke="#e5e9ef"/>
+<text x="62" y="240.0" text-anchor="end" fill="#52606d">44,0</text>
+<line x1="70" x2="550" y1="173.99999999999997" y2="173.99999999999997" stroke="#e5e9ef"/>
+<text x="62" y="177.99999999999997" text-anchor="end" fill="#52606d">66,0</text>
+<line x1="70" x2="550" y1="112.0" y2="112.0" stroke="#e5e9ef"/>
+<text x="62" y="116.0" text-anchor="end" fill="#52606d">88,0</text>
+<line x1="70" x2="550" y1="49.99999999999994" y2="49.99999999999994" stroke="#e5e9ef"/>
+<text x="62" y="53.99999999999994" text-anchor="end" fill="#52606d">110</text>
+<text x="70.0" y="380" text-anchor="middle" fill="#52606d">0,5</text>
+<text x="123.33333333333333" y="380" text-anchor="middle" fill="#52606d">1,0</text>
+<text x="230.0" y="380" text-anchor="middle" fill="#52606d">2,0</text>
+<text x="550.0" y="380" text-anchor="middle" fill="#52606d">5,0</text>
+<line x1="70" x2="550" y1="360" y2="360" stroke="#9aa5b1"/>
+<polyline points="70.0,350.0 123.3,224.1 230.0,224.1 550.0,78.2" fill="none" stroke="#1d4ed8" stroke-width="2.5"/>
+<circle cx="70.0" cy="350.0" r="4" fill="#1d4ed8"/>
+<circle cx="123.3" cy="224.1" r="4" fill="#1d4ed8"/>
+<circle cx="230.0" cy="224.1" r="4" fill="#1d4ed8"/>
+<circle cx="550.0" cy="78.2" r="4" fill="#1d4ed8"/>
+<polyline points="70.0,340.7 123.3,224.1 230.0,224.1 550.0,78.2" fill="none" stroke="#c62828" stroke-width="2.5"/>
+<circle cx="70.0" cy="340.7" r="4" fill="#c62828"/>
+<circle cx="123.3" cy="224.1" r="4" fill="#c62828"/>
+<circle cx="230.0" cy="224.1" r="4" fill="#c62828"/>
+<circle cx="550.0" cy="78.2" r="4" fill="#c62828"/>
+<polyline points="70.0,355.4 123.3,228.3 230.0,228.3 550.0,78.2" fill="none" stroke="#2e7d32" stroke-width="2.5"/>
+<circle cx="70.0" cy="355.4" r="4" fill="#2e7d32"/>
+<circle cx="123.3" cy="228.3" r="4" fill="#2e7d32"/>
+<circle cx="230.0" cy="228.3" r="4" fill="#2e7d32"/>
+<circle cx="550.0" cy="78.2" r="4" fill="#2e7d32"/>
+<polyline points="70.0,355.4 123.3,272.0 230.0,272.0 550.0,78.2" fill="none" stroke="#ef6c00" stroke-width="2.5"/>
+<circle cx="70.0" cy="355.4" r="4" fill="#ef6c00"/>
+<circle cx="123.3" cy="272.0" r="4" fill="#ef6c00"/>
+<circle cx="230.0" cy="272.0" r="4" fill="#ef6c00"/>
+<circle cx="550.0" cy="78.2" r="4" fill="#ef6c00"/>
+<polyline points="70.0,340.7 123.3,224.1 230.0,224.1 550.0,78.2" fill="none" stroke="#6a1b9a" stroke-width="2.5"/>
+<circle cx="70.0" cy="340.7" r="4" fill="#6a1b9a"/>
+<circle cx="123.3" cy="224.1" r="4" fill="#6a1b9a"/>
+<circle cx="230.0" cy="224.1" r="4" fill="#6a1b9a"/>
+<circle cx="550.0" cy="78.2" r="4" fill="#6a1b9a"/>
+<rect x="566" y="49" width="12" height="12" rx="2" fill="#1d4ed8"/>
+<text x="584" y="59" fill="#1f2933">Savassi</text>
+<rect x="566" y="69" width="12" height="12" rx="2" fill="#c62828"/>
+<text x="584" y="79" fill="#1f2933">Centro</text>
+<rect x="566" y="89" width="12" height="12" rx="2" fill="#2e7d32"/>
+<text x="584" y="99" fill="#1f2933">Pampulha</text>
+<rect x="566" y="109" width="12" height="12" rx="2" fill="#ef6c00"/>
+<text x="584" y="119" fill="#1f2933">Barreiro</text>
+<rect x="566" y="129" width="12" height="12" rx="2" fill="#6a1b9a"/>
+<text x="584" y="139" fill="#1f2933">Borda de célula</text>
+</svg>

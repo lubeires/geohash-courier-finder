@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" font-family="Helvetica, Arial, sans-serif" font-size="12">
+<rect width="720" height="420" fill="#ffffff"/>
+<text x="70" y="28" font-size="15" font-weight="bold" fill="#1f2933">Tempo por etapa da consulta (N = 10.000)</text>
+<text x="310.0" y="404" text-anchor="middle" fill="#52606d">raio de atendimento (km)</text>
+<text transform="translate(18 205.0) rotate(-90)" text-anchor="middle" fill="#52606d">tempo (ms)</text>
+<line x1="70" x2="550" y1="360.0" y2="360.0" stroke="#e5e9ef"/>
+<text x="62" y="364.0" text-anchor="end" fill="#52606d">0</text>
+<line x1="70" x2="550" y1="298.0" y2="298.0" stroke="#e5e9ef"/>
+<text x="62" y="302.0" text-anchor="end" fill="#52606d">1,8</text>
+<line x1="70" x2="550" y1="236.0" y2="236.0" stroke="#e5e9ef"/>
+<text x="62" y="240.0" text-anchor="end" fill="#52606d">3,6</text>
+<line x1="70" x2="550" y1="174.00000000000003" y2="174.00000000000003" stroke="#e5e9ef"/>
+<text x="62" y="178.00000000000003" text-anchor="end" fill="#52606d">5,4</text>
+<line x1="70" x2="550" y1="112.00000000000003" y2="112.00000000000003" stroke="#e5e9ef"/>
+<text x="62" y="116.00000000000003" text-anchor="end" fill="#52606d">7,2</text>
+<line x1="70" x2="550" y1="50.0" y2="50.0" stroke="#e5e9ef"/>
+<text x="62" y="54.0" text-anchor="end" fill="#52606d">9,0</text>
+<rect x="97.0" y="355.7" width="66.0" height="4.3" fill="#1d4ed8"/>
+<rect x="97.0" y="351.9" width="66.0" height="3.8" fill="#c62828"/>
+<rect x="97.0" y="348.3" width="66.0" height="3.6" fill="#2e7d32"/>
+<text x="130.0" y="342.3" text-anchor="middle" fill="#1f2933">0,34</text>
+<text x="130.0" y="380" text-anchor="middle" fill="#52606d">0,5</text>
+<rect x="217.0" y="354.3" width="66.0" height="5.7" fill="#1d4ed8"/>
+<rect x="217.0" y="304.6" width="66.0" height="49.7" fill="#c62828"/>
+<rect x="217.0" y="283.5" width="66.0" height="21.1" fill="#2e7d32"/>
+<text x="250.0" y="277.5" text-anchor="middle" fill="#1f2933">2,2</text>
+<text x="250.0" y="380" text-anchor="middle" fill="#52606d">1</text>
+<rect x="337.0" y="354.8" width="66.0" height="5.2" fill="#1d4ed8"/>
+<rect x="337.0" y="307.2" width="66.0" height="47.6" fill="#c62828"/>
+<rect x="337.0" y="266.2" width="66.0" height="41.0" fill="#2e7d32"/>
+<text x="370.0" y="260.2" text-anchor="middle" fill="#1f2933">2,7</text>
+<text x="370.0" y="380" text-anchor="middle" fill="#52606d">2</text>
+<rect x="457.0" y="354.0" width="66.0" height="6.0" fill="#1d4ed8"/>
+<rect x="457.0" y="224.7" width="66.0" height="129.3" fill="#c62828"/>
+<rect x="457.0" y="78.2" width="66.0" height="146.5" fill="#2e7d32"/>
+<text x="490.0" y="72.2" text-anchor="middle" fill="#1f2933">8,2</text>
+<text x="490.0" y="380" text-anchor="middle" fill="#52606d">5</text>
+<rect x="566" y="49" width="12" height="12" rx="2" fill="#1d4ed8"/>
+<text x="584" y="59" fill="#1f2933">Geohash + vizinhas</text>
+<rect x="566" y="69" width="12" height="12" rx="2" fill="#c62828"/>
+<text x="584" y="79" fill="#1f2933">Busca na Trie</text>
+<rect x="566" y="89" width="12" height="12" rx="2" fill="#2e7d32"/>
+<text x="584" y="99" fill="#1f2933">Filtro (caixa + Haversine)</text>
+</svg>

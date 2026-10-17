@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" font-family="Helvetica, Arial, sans-serif" font-size="12">
+<rect width="720" height="420" fill="#ffffff"/>
+<text x="70" y="28" font-size="15" font-weight="bold" fill="#1f2933">Tempo de consulta x tamanho da frota (raio de 2 km)</text>
+<text x="310.0" y="404" text-anchor="middle" fill="#52606d">entregadores na frota (N)</text>
+<text transform="translate(18 205.0) rotate(-90)" text-anchor="middle" fill="#52606d">tempo (ms, escala log)</text>
+<line x1="70" x2="550" y1="360.0" y2="360.0" stroke="#e5e9ef"/>
+<text x="62" y="364.0" text-anchor="end" fill="#52606d">0,1</text>
+<line x1="70" x2="550" y1="256.6666666666667" y2="256.6666666666667" stroke="#e5e9ef"/>
+<text x="62" y="260.6666666666667" text-anchor="end" fill="#52606d">1,0</text>
+<line x1="70" x2="550" y1="153.33333333333334" y2="153.33333333333334" stroke="#e5e9ef"/>
+<text x="62" y="157.33333333333334" text-anchor="end" fill="#52606d">10,0</text>
+<line x1="70" x2="550" y1="50.0" y2="50.0" stroke="#e5e9ef"/>
+<text x="62" y="54.0" text-anchor="end" fill="#52606d">100</text>
+<text x="70.0" y="380" text-anchor="middle" fill="#52606d">1.000</text>
+<text x="171.05263157894737" y="380" text-anchor="middle" fill="#52606d">5.000</text>
+<text x="297.36842105263156" y="380" text-anchor="middle" fill="#52606d">10.000</text>
+<text x="550.0" y="380" text-anchor="middle" fill="#52606d">20.000</text>
+<line x1="70" x2="550" y1="360" y2="360" stroke="#9aa5b1"/>
+<polyline points="70.0,264.3 171.1,234.5 297.4,209.0 550.0,156.3" fill="none" stroke="#1d4ed8" stroke-width="2.5"/>
+<circle cx="70.0" cy="264.3" r="4" fill="#1d4ed8"/>
+<circle cx="171.1" cy="234.5" r="4" fill="#1d4ed8"/>
+<circle cx="297.4" cy="209.0" r="4" fill="#1d4ed8"/>
+<circle cx="550.0" cy="156.3" r="4" fill="#1d4ed8"/>
+<polyline points="70.0,230.7 171.1,185.3 297.4,159.1 550.0,124.9" fill="none" stroke="#c62828" stroke-width="2.5"/>
+<circle cx="70.0" cy="230.7" r="4" fill="#c62828"/>
+<circle cx="171.1" cy="185.3" r="4" fill="#c62828"/>
+<circle cx="297.4" cy="159.1" r="4" fill="#c62828"/>
+<circle cx="550.0" cy="124.9" r="4" fill="#c62828"/>
+<polyline points="70.0,334.7 171.1,266.8 297.4,252.9 550.0,214.9" fill="none" stroke="#2e7d32" stroke-width="2.5"/>
+<circle cx="70.0" cy="334.7" r="4" fill="#2e7d32"/>
+<circle cx="171.1" cy="266.8" r="4" fill="#2e7d32"/>
+<circle cx="297.4" cy="252.9" r="4" fill="#2e7d32"/>
+<circle cx="550.0" cy="214.9" r="4" fill="#2e7d32"/>
+<rect x="566" y="49" width="12" height="12" rx="2" fill="#1d4ed8"/>
+<text x="584" y="59" fill="#1f2933">Trie + vizinhança</text>
+<rect x="566" y="69" width="12" height="12" rx="2" fill="#c62828"/>
+<text x="584" y="79" fill="#1f2933">Varredura linear</text>
+<rect x="566" y="89" width="12" height="12" rx="2" fill="#2e7d32"/>
+<text x="584" y="99" fill="#1f2933">Linear + caixa</text>
+</svg>
