@@ -1,7 +1,8 @@
 # Relatório: Indexação Geoespacial com Geohash e Trie Compacta
 
 **Trabalho Prático 1, DCC207 Algoritmos 2 (UFMG)**
-**Aluna:** Luana Palhares
+
+**Aluna:** Luana Ribeiro Palhares 
 
 ## 1. Introdução
 
