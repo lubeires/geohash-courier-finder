@@ -264,7 +264,6 @@ def register(app: Dash, catalog: RestaurantCatalog, network, state: FleetState) 
                 [html.Strong(r.display_name), html.Span(f"{r.address} · {display_case(r.neighborhood)}")],
                 id={"type": "suggestion", "id": r.id},
                 className="suggestion",
-                role="listitem",
             )
             for r in found
         ]
@@ -373,7 +372,7 @@ def register(app: Dash, catalog: RestaurantCatalog, network, state: FleetState) 
         viewport = no_update
         if ctx.triggered_id in ("selected-restaurant", "radius"):
             (south, west), (north, east) = bbox_around(restaurant.lat, restaurant.lon, radius_km * 1.15)
-            viewport = {"bounds": [[south, west], [north, east]], "transition": "flyToBounds"}
+            viewport = {"bounds": [[south, west], [north, east]], "transition": "fitBounds"}
         layers = restaurant_layers(restaurant, radius_km)
 
         if index is None:

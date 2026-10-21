@@ -3,6 +3,7 @@ import random
 import pytest
 
 from config import GRAPH_PATH
+from core.geometry import haversine_km
 
 pytestmark = [
     pytest.mark.graph,
@@ -25,10 +26,28 @@ def test_snapped_points_are_on_the_road(network):
     assert max(network.distance_to_nearest_edge_m(snapped)) < 1.0
 
 
-def test_point_in_the_lake_is_moved(network):
+def test_snap_is_idempotent(network):
+    rng = random.Random(7)
+    points = [(rng.gauss(-19.92, 0.03), rng.gauss(-43.94, 0.03)) for _ in range(300)]
+    once = network.snap(points)
+    twice = network.snap(once)
+    assert max(haversine_km(*a, *b) for a, b in zip(once, twice, strict=True)) < 0.001
+
+
+def test_snap_moves_point_by_its_distance_to_the_road(network):
+    rng = random.Random(9)
+    points = [(rng.gauss(-19.92, 0.03), rng.gauss(-43.94, 0.03)) for _ in range(300)]
+    snapped = network.snap(points)
+    expected = network.distance_to_nearest_edge_m(points)
+    for p, q, d in zip(points, snapped, expected, strict=True):
+        assert abs(haversine_km(*p, *q) * 1000 - d) < 1.0
+
+
+def test_point_in_the_lake_is_moved_to_the_shore(network):
     # meio da lagoa da Pampulha
-    lat, lon = network.snap([(-19.8510, -43.9790)])[0]
-    assert (lat, lon) != (-19.8510, -43.9790)
+    lake = (-19.8510, -43.9790)
+    lat, lon = network.snap([lake])[0]
+    assert haversine_km(*lake, lat, lon) > 0.1
 
 
 def test_generation_with_snap_is_deterministic(network):

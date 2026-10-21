@@ -2,7 +2,7 @@
 
 **Trabalho Prático 1, DCC207 Algoritmos 2 (UFMG)**
 
-**Aluna:** Luana Ribeiro Palhares 
+**Aluna:** Luana Ribeiro Palhares
 
 ## 1. Introdução
 
@@ -71,8 +71,8 @@ isso foi adotado como fonte.
 As coordenadas da PBH estão em SIRGAS 2000 / UTM zona 23 Sul. O script
 `scripts/build_restaurants.py` filtra os quatro CNAEs e converte as coordenadas para latitude e
 longitude com a série inversa de Krüger para a projeção transversa de Mercator (Karney, 2011). A
-conversão foi validada contra a biblioteca `pyproj` em todos os pontos, com diferença máxima
-inferior a 1 µm. O `pyproj` não é dependência do projeto. O arquivo resultante,
+conversão foi conferida uma única vez contra a biblioteca `pyproj`, fora do repositório, em todos os
+20.859 pontos, com diferença máxima inferior a 1 µm. O `pyproj` não é dependência do projeto. O arquivo resultante,
 `data/restaurants.csv` (2,9 MB), é o único lido pelo sistema.
 
 | Categoria | CNAE | Estabelecimentos |
@@ -126,8 +126,9 @@ os casos em que a vizinha pertence a outra célula-pai: a vizinha leste de `7h2x
 `7h2zb`. A longitude dá a volta no antimeridiano e a latitude satura nos polos. Cada vizinha custa
 uma codificação, O(p).
 
-A codificação foi comparada com a biblioteca `pygeohash` em 100 mil pontos, sem divergências. Os
-vizinhos foram verificados geometricamente em mais de 10 mil células, incluindo todas as filhas
+A codificação também foi comparada com a biblioteca `pygeohash` em 100 mil pontos aleatórios, com
+precisões de 1 a 12, sem divergências. Essa comparação foi feita fora do repositório, já que o
+`pygeohash` não é dependência do projeto. Os vizinhos foram verificados geometricamente em mais de 10 mil células, incluindo todas as filhas
 de pais aleatórios: cada vizinha tem o mesmo tamanho da célula original e está encostada no lado
 correto.
 
@@ -146,7 +147,8 @@ class _Node:
 - **Rótulos nas arestas (compressão de caminho).** Cadeias de nós com um único filho são reduzidas
   a uma aresta. Com 10 mil entregadores, a árvore tem 12.591 nós, contra 16.963 em uma Trie comum
   (26% a menos). A redução se concentra nos níveis mais profundos, onde os ramos raramente se
-  dividem. A compressão também garante a coleta em O(k) (seção 5.3).
+  dividem. O ganho é modesto porque as chaves são curtas e densas: o rótulo médio tem 1,2
+  caractere (seção 10.2).
 - **Filhos em dicionário indexado pelo primeiro caractere.** Os rótulos dos filhos de um nó começam
   com caracteres distintos, então a escolha da aresta é O(1).
 - **Bucket em lista.** Vários entregadores podem compartilhar o mesmo geohash de 8 caracteres. Com
@@ -177,13 +179,17 @@ Sejam m o tamanho do prefixo e k o número de valores devolvidos.
 - **Descida:** cada caractere do prefixo é comparado no máximo uma vez, e a escolha do filho é
   O(1). O custo é O(m).
 - **Coleta:** sejam T a subárvore e L o número de nós terminais de T. Cada terminal contém pelo
-  menos um valor, logo L ≤ k. Pela invariante, toda folha de T é terminal, e todo nó interno não
-  terminal tem pelo menos dois filhos. Em uma árvore em que todo nó interno tem pelo menos dois
-  filhos, há menos nós internos do que folhas. Portanto |T| ≤ 2L − 1 ≤ 2k − 1, e a coleta custa
-  O(|T| + k) = O(k).
+  menos um valor, logo L ≤ k. Os nós de T se dividem em três grupos: folhas (F), nós com um único
+  filho (U) e nós com dois ou mais filhos (D). Pela invariante, toda folha e todo nó com um único
+  filho são terminais, então F + U ≤ L. Em qualquer árvore, o número de nós com dois ou mais
+  filhos é menor que o número de folhas, então D < F ≤ L. Portanto |T| = F + U + D < 2L ≤ 2k, e
+  a coleta custa O(|T| + k) = O(k).
 
-A busca custa O(m + k), como exigido. Sem a compressão, uma subárvore com poucos valores poderia
-conter longas cadeias de nós com um único filho, e a coleta deixaria de ser O(k).
+A busca custa O(m + k), como exigido. Para chaves de tamanho arbitrário, a compressão é essencial:
+sem ela, uma subárvore com poucos valores poderia conter longas cadeias de nós com um único filho.
+Neste trabalho, como todas as chaves têm exatamente 8 caracteres, uma Trie comum também teria
+coleta O(k), com no máximo (8 − m)·k nós na subárvore. A diferença seria apenas de constante, o que
+é coerente com a redução de 26% no número de nós.
 
 A consulta faz a busca nas 9 células. Células de mesma precisão são disjuntas, então nenhum
 entregador é devolvido duas vezes, e o custo total é O(9m + K) = O(m + K), em que K é o número
@@ -251,10 +257,16 @@ busca na Trie e filtro. Os tempos são exibidos na interface.
 
 ### 7.1 Distribuição baseada em demanda
 
-- **Centros:** os 4.715 bares da base.
+- **Centros:** os 4.715 bares da base (CNAEs 5611204 e 5611205). O enunciado associa a ociosidade
+  dos entregadores aos bares, e o cadastro da PBH permite separá-los de restaurantes e lanchonetes
+  pelo CNAE. Os demais 16.144 estabelecimentos continuam disponíveis como pontos de consulta.
 - **Distribuição equitativa:** cada centro recebe ⌊N/C⌋ entregadores, e os N mod C restantes são
   atribuídos a centros sorteados sem reposição. Quando N < C, são sorteados N centros, cada um com
-  um entregador. Nos dois casos, as quantidades por centro diferem em no máximo 1.
+  um entregador. Nos dois casos, as quantidades por centro diferem em no máximo 1. Com N próximo de
+  C ou menor, cada bar recebe no máximo um ou dois entregadores; a alta densidade ao redor dos
+  bares vem, então, da concentração dos próprios bares em certas regiões, e não de vários
+  entregadores sorteados em torno do mesmo centro. Com N bem maior que C (por exemplo, 20 mil),
+  cada bar passa a ter vários entregadores ao seu redor.
 - **Posição inicial:** dois deslocamentos independentes `random.gauss(0, σ)`, em metros, nas
   direções norte e leste, convertidos para graus por `Δφ = dy/M` e `Δλ = dx/(M·cos φ)`, com
   M = 111.195 m por grau. O valor padrão é σ = 400 m.
@@ -319,7 +331,7 @@ frota, (2) escolha do restaurante, (3) ajuste do raio e (4) velocidade média pa
 
 ## 9. Testes
 
-O projeto tem 89 testes automatizados (pytest), todos aprovados.
+O projeto tem 91 testes automatizados (pytest), todos aprovados.
 
 | Área | Verificações |
 |---|---|
@@ -343,16 +355,21 @@ e 6 aparecem nas Figuras 4, 3 e 1; a consulta 5 é o caso de borda da seção 6.
 | # | Restaurante | Raio | p | Candidatos | Aceitos | Mais próximo | Tempo (ms) |
 |---|---|---|---|---|---|---|---|
 | 1 | Dona Deja (Savassi) | 2 km | 5 | 2.417 | 359 | 0,08 km | 2,78 |
-| 2 | Bar Mercado Central (Centro) | 2 km | 5 | 2.417 | 514 | 0,03 km | 2,31 |
+| 2 | Bar Mercado Central (Centro) | 2 km | 5 | 2.417 | 514 | 0,03 km | 15,28 |
 | 3 | Casa Verde Club (Pampulha) | 2 km | 5 | 2.324 | 161 | 0,04 km | 1,71 |
 | 4 | Tatu Rei do Angu (Barreiro) | 2 km | 5 | 1.551 | 138 | 0,07 km | 1,16 |
 | 5 | DJ Lanches (Centro, borda de célula) | 2 km | 5 | 2.417 | 507 | 0,04 km | 2,01 |
 | 6 | Bar Mercado Central (Centro) | 0,5 km | 6 | 340 | 92 | 0,03 km | 0,53 |
 | 7 | Bar Mercado Central (Centro) | 5 km | 4 | 5.000 | 1.729 | 0,03 km | 83,40* |
 
-\* A soma das etapas dessa consulta foi de 3,6 ms; o restante corresponde a uma pausa do coletor de
-lixo do Python durante a montagem do resultado. No benchmark, que desativa o coletor durante as
-medições, a mediana da mesma configuração é 6,7 ms.
+\* A soma das etapas dessa consulta foi de 3,6 ms; o restante foi gasto na montagem do resultado,
+provavelmente em uma pausa do coletor de lixo do Python. No benchmark, que desativa o coletor
+durante as medições, a mediana da mesma configuração é 6,7 ms.
+
+Cada tempo da tabela é uma única medição feita na interface, e esses valores oscilam bastante entre
+execuções: repetindo a consulta 2, observei de 2 a 15 ms. A consulta divide o processador com os
+outros callbacks disparados pela mesma ação (como a atualização da lista de sugestões) e com o
+navegador. As medianas da seção 10.2 são a referência mais confiável.
 
 ### 10.2 Desempenho
 
@@ -418,8 +435,11 @@ melhoria natural é cobrir o círculo com mais células de precisão maior (por 
 células de precisão p+1 que intersectam a caixa do círculo), em vez de apenas as 8 vizinhas na
 precisão p.
 
-Todas as consultas do benchmark ficaram abaixo de 30 ms, mesmo com 20 mil entregadores, e a
-interface responde sem atraso perceptível.
+Todas as consultas do benchmark ficaram abaixo de 30 ms, mesmo com 20 mil entregadores. Na
+interface, porém, o tempo percebido inclui a montagem e o envio da resposta (pinos e tabela) e o
+desenho no navegador. Com 5 mil entregadores e raio de 2 km, a resposta tem cerca de 0,7 MB e é
+montada em cerca de 60 ms. No pior caso, com 20 mil entregadores e raio de 10 km, ela chega a
+12,6 MB e cerca de 2 s, porque a tabela lista todos os 14,8 mil aceitos.
 
 ## 11. Limitações
 
@@ -430,6 +450,8 @@ interface responde sem atraso perceptível.
 - **Rua mais próxima medida em graus:** a escolha da aresta pelo `osmnx` não aplica o fator cos φ
   (seção 7.2).
 - **Frota estática:** os entregadores não se movem. Cada geração produz uma frota nova.
+- **Tabela completa:** a tabela lista todos os entregadores aceitos, o que deixa a interface lenta
+  com frotas grandes e raios grandes (seção 10.3). Paginar a tabela resolveria.
 - **Usuário único:** a frota fica na memória do servidor e é compartilhada entre abas.
 
 ## 12. Reprodução

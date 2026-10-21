@@ -202,6 +202,11 @@ fieldset.panel-section {
   border-color: var(--danger);
 }
 
+.input .dash-input-element {
+  padding-left: var(--s1);
+  padding-right: var(--s1);
+}
+
 .field-hint {
   margin: var(--s1) 0 0;
   font-size: 0.8rem;

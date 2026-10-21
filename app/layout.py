@@ -103,7 +103,7 @@ def _panel() -> html.Aside:
                 "restaurant-query",
                 hint="Digite ao menos 2 letras.",
             ),
-            html.Div(id="restaurant-suggestions", className="suggestions", role="list"),
+            html.Div(id="restaurant-suggestions", className="suggestions"),
         ],
         className="panel-section",
     )
